@@ -1,6 +1,7 @@
 var express = require('express'),
 app = express(),
-path = require('path');
+path = require('path'),
+reddit = require('./modules/reddit.js');
 
 var SERVER_PORT = 3000;
 
