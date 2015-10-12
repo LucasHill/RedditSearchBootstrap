@@ -1,7 +1,10 @@
 <html>
 <head>
-	<script src="js/all.js"></script>
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>     
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.js"></script>
+	<script src="js/all.js"></script>
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -9,14 +12,14 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div id="mainContainer">
+	<div id="mainContainer" ng-app = "redditSearchApp" ng-controller = "resultsController as controller">
 
 		<div id="searchArea" class="row">
 			<div class="col-lg-6">
 				<div class="input-group">
 					<input id="searchInput" type="text" class="form-control" placeholder="Search for...">
 					<span class="input-group-btn">
-						<button id="searchButton" class="btn btn-default" type="button">Go!</button>
+						<button id="searchButton" class="btn btn-default" type="button" ng-click="query()">Go!</button>
 					</span>
 				</div>
 			</div>
@@ -25,11 +28,13 @@
 		<div id="resultPanel" class="panel panel-default">
 			<div class="panel-body">
 				<ul id="resultsList" class="list-group">
-					<!-- <li class="list-group-item">Cras justo odio</li> -->
+					<li class="list-group-item animate bounceInUp" ng-repeat = "result in results">
+						<a href={{result.url}} target="_blank">{{result.title}}</a>
+					</li>				
 				</ul>
+				</div>
 			</div>
 		</div>
-	</div>
 
-</body>
-</html>
+	</body>
+	</html>
