@@ -2,11 +2,18 @@ var gulp = require('gulp'),
 sourcemaps = require('gulp-sourcemaps'),
 babel = require('gulp-babel'),
 concat = require('gulp-concat'),
-nodemon = require('gulp-nodemon');
+nodemon = require('gulp-nodemon'),
+sass = require('gulp-sass');
 
-var JS_SOURCE_DIR = 'es6/**/*.es6';
+var JS_SOURCE_DIR = 'public/es6/**/*.es6',
+	HTML_SOURCE_DIR = 'public/*.html',
+	SASS_SOURCE_DIR = 'public/sass/**/*.scss';
 
-
+gulp.task('sass', function () {
+  gulp.src(SASS_SOURCE_DIR)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('dist/css'));
+});
 
 gulp.task('babel', function() {
 	return gulp.src(JS_SOURCE_DIR)
@@ -17,7 +24,11 @@ gulp.task('babel', function() {
 	.pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('default', ['babel', 'start']);
+gulp.task('copy', function () {
+  return gulp
+    .src(HTML_SOURCE_DIR)
+    .pipe(gulp.dest('dist'))
+})
 
 gulp.task('start', function () {
 	nodemon({
@@ -28,5 +39,8 @@ gulp.task('start', function () {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(JS_SOURCE_DIR, ['babel']);
+  gulp.watch([JS_SOURCE_DIR, HTML_SOURCE_DIR, SASS_SOURCE_DIR], ['babel', 'sass', 'copy']);
 });
+
+gulp.task('default', ['babel', 'copy', 'sass', 'start']);
+gulp.task('build', ['babel', 'copy', 'sass', 'watch']);
