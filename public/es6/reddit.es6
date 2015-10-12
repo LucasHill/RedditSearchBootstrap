@@ -13,7 +13,7 @@
 				var newLI = document.createElement('li');
 				newLI.classList.add('list-group-item');
 				newLI.classList.add('animated');
-				newLI.classList.add('bounceInUp');
+				newLI.classList.add('bounceIn');
 				
 				let aTag = document.createElement('a');
 				aTag.appendChild(document.createTextNode(element.title));
