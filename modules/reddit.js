@@ -34,6 +34,7 @@ exports.test = function() {
 exports.search = function(query, res) {
 	reddit('/r/all/search').get({q: query, limit: 10}).then(function(result) {
 		var compacted = compactResults(result);
+		res.send(compacted);
 		console.log(compacted);
 	});
 }
