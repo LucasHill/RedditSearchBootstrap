@@ -4,3 +4,9 @@ SASS
 ES6/Babel
 Gulp
 NodeJS
+
+To run:
+1. Install NodeJS/Npm
+2. Run `npm install`
+3. Ensure you install gulp cli
+4. Run  `gulp build` and `gulp start`
