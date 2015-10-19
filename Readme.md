@@ -10,3 +10,4 @@ To run:
 2. Run `npm install`
 3. Ensure you install gulp cli
 4. Run  `gulp build` and `gulp start`
+5. Checkout either VanillaJS or AngularJS branhes to see more complete example
